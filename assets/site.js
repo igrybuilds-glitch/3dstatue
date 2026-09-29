@@ -1,4 +1,4 @@
-/* 3D Statue — site interactions */
+/* 3D Statue Studio — site interactions (v2) */
 (function(){
   "use strict";
 
@@ -6,7 +6,10 @@
   var burger = document.querySelector(".burger"),
       nav = document.querySelector(".nav");
   if (burger && nav) {
-    burger.addEventListener("click", function(){ nav.classList.toggle("open"); });
+    burger.addEventListener("click", function(e){
+      e.stopPropagation();
+      nav.classList.toggle("open");
+    });
   }
   document.querySelectorAll(".drop > button").forEach(function(btn){
     btn.addEventListener("click", function(e){
@@ -18,11 +21,13 @@
   });
   document.addEventListener("click", function(){
     document.querySelectorAll(".drop.open").forEach(function(x){ x.classList.remove("open"); });
+    if (nav && nav.classList.contains("open")) nav.classList.remove("open");
   });
 
   /* ---- FAQ accordion ---- */
   document.querySelectorAll(".faq-item").forEach(function(item){
     var q = item.querySelector(".faq-q"), a = item.querySelector(".faq-a");
+    if (!q || !a) return;
     q.addEventListener("click", function(){
       var open = item.classList.contains("open");
       document.querySelectorAll(".faq-item.open").forEach(function(o){
@@ -35,8 +40,34 @@
   /* ---- reveal on scroll ---- */
   var io = ("IntersectionObserver" in window) ? new IntersectionObserver(function(es){
     es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, {threshold:.12}) : null;
+  }, {threshold:.1}) : null;
   document.querySelectorAll(".rv").forEach(function(el){ io ? io.observe(el) : el.classList.add("in"); });
+
+  /* ---- collection search filter ---- */
+  var search = document.getElementById("shop-search"),
+      grid = document.getElementById("pgrid"),
+      count = document.getElementById("shop-count"),
+      noresult = document.getElementById("noresult");
+  if (search && grid) {
+    var cards = Array.prototype.slice.call(grid.querySelectorAll(".pcard"));
+    search.addEventListener("input", function(){
+      var q = search.value.trim().toLowerCase(), shown = 0;
+      cards.forEach(function(c){
+        var hit = !q || (c.getAttribute("data-title") + " " + c.textContent).toLowerCase().indexOf(q) > -1;
+        c.style.display = hit ? "" : "none";
+        if (hit) shown++;
+      });
+      if (count) count.textContent = shown + (shown === 1 ? " collection" : " collections");
+      if (noresult) noresult.hidden = shown !== 0;
+      if (q && shown) {
+        document.getElementById("collections").scrollIntoView({behavior:"smooth", block:"start"});
+      }
+    });
+    /* keep scroll on Enter only */
+    search.addEventListener("keydown", function(e){
+      if (e.key === "Enter") { e.preventDefault(); }
+    });
+  }
 
   /* ---- enquiry form ----
      Set WHATSAPP_NUMBER to the studio's WhatsApp number (e.g. "919876543210")
@@ -60,8 +91,7 @@
       window.open(url, "_blank", "noopener");
       form.style.display = "none";
       var ok = document.getElementById("form-ok");
-      if (ok) ok.style.display = "block";
-      ok.scrollIntoView({behavior:"smooth", block:"center"});
+      if (ok) { ok.style.display = "block"; ok.scrollIntoView({behavior:"smooth", block:"center"}); }
     });
   }
 
