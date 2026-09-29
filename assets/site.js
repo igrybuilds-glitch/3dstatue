@@ -70,10 +70,11 @@
   }
 
   /* ---- enquiry form ----
-     Set WHATSAPP_NUMBER to the studio's WhatsApp number (e.g. "919876543210")
-     once known. Until then the form opens a WhatsApp share sheet with the
-     enquiry pre-filled so the visitor can send it to the studio chat. */
-  var WHATSAPP_NUMBER = "";
+     WHATSAPP_NUMBER = the studio's WhatsApp number in international format
+     (no +, spaces or dashes). Enquiries open a wa.me chat to this number
+     with the enquiry pre-filled. Currently set to Manmohan's own number —
+     swap it any time a separate business number is ready. */
+  var WHATSAPP_NUMBER = "917014257991";
   var form = document.getElementById("enquiry-form");
   if (form) {
     form.addEventListener("submit", function(e){

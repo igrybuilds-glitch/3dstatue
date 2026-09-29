@@ -113,6 +113,7 @@ section{padding:0}
 .pcard h3 a:hover{color:var(--gold-deep)}
 .pdesc{font-size:.88rem;color:var(--muted);flex:1}
 .pmeta{font-size:.8rem;font-weight:700;color:var(--gold-deep)}
+.price{font-size:1.3rem;font-weight:800;margin:2px 0}
 .pcard .buy{margin-top:6px;padding:10px;font-size:.9rem}
 .noresult{text-align:center;color:var(--muted);padding:30px}
 
