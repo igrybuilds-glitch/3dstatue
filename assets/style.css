@@ -228,3 +228,17 @@ footer{background:#fff;padding:56px 0 0}
   .trust-in{grid-template-columns:1fr 1fr;gap:14px}
   .shop,.how,.craft,.reviews,.faqsec,.enquire{padding:52px 0}
 }
+
+/* ══ ready-made store ══ */
+.readymade{background:#fff}
+.bts-banner{background:linear-gradient(135deg,#3b0a6b,#7b1fa2 60%,#9c27b0);border-radius:20px;color:#fff;padding:clamp(24px,4vw,44px);display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:26px 0 8px;box-shadow:0 18px 40px -18px rgba(74,20,140,.55)}
+.bts-banner .kicker{color:#e9d5ff}
+.bts-banner h3{color:#fff;font-size:clamp(1.5rem,3vw,2.2rem);margin:6px 0 10px}
+.bts-banner p{color:#f3e8ff;max-width:46ch}
+.bts-banner .btn.go{margin-top:16px}
+.bts-note{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:16px 18px;max-width:300px}
+.bts-note span{font-size:1.8rem}
+.bts-note p{color:#fff;font-size:.92rem;margin:0}
+.sub-h{margin:38px 0 18px;font-size:1.45rem}
+.hero-alt{margin-top:14px;font-size:.95rem;color:var(--mut)}
+.hero-alt a{color:var(--brand-ink);font-weight:700}
